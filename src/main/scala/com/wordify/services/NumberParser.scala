@@ -5,7 +5,7 @@ import com.wordify.domain._
 import com.wordify.domain.tags._
 import shapeless.tag.@@
 
-object Parser {
+object NumberParser {
   def parse(number: Int @@ WholeNumber): NumberTerms = {
 
     @scala.annotation.tailrec

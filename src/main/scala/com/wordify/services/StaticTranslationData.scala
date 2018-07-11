@@ -1,12 +1,10 @@
 package com.wordify.services
 
-
 object StaticTranslationData {
 
   val MaxValue = 999999999
 
   val units: Map[Int, String] = Map(
-    0 -> "zero",
     1 -> "one",
     2 -> "two",
     3 -> "three",
@@ -19,6 +17,7 @@ object StaticTranslationData {
   )
 
   val tens: Map[Int, String] = Map(
+    10 -> "ten",
     11 -> "eleven",
     12 -> "twelve",
     13 -> "thirteen",
@@ -31,7 +30,6 @@ object StaticTranslationData {
   )
 
   val tenMultiples: Map[Int, String] = Map(
-    10 -> "ten",
     20 -> "twenty",
     30 -> "thirty",
     40 -> "forty",

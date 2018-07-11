@@ -14,23 +14,28 @@ package object validations {
 
   type Validation[A] = ValidatedNel[ValidationError, A]
 
-  def stringIsValidWholeNumberUnderTranslationLimit(name: String, value: String): Validation[Int @@ WholeNumber] =
-    validateInt(name, value).andThen(validWholeNumber(name, _)).andThen(value =>
-      if (value <= StaticTranslationData.MaxValue) value.validNel
-      else NumberTooBigToTranslate(s"Numbers greater than ${StaticTranslationData.MaxValue} cannot be translated").invalidNel
-    )
+  def stringIsValidWholeNumberUnderTranslationLimit(
+    name: String,
+    value: String): Validation[Int @@ WholeNumber] =
+    validateInt(name, value).andThen(validWholeNumber(name, _))
+      .andThen(value =>
+        if (value <= StaticTranslationData.MaxValue) value.validNel
+        else NumberTooBigToTranslate(
+          s"Numbers greater than ${StaticTranslationData.MaxValue} cannot be translated").invalidNel
+      )
 
   // Private
 
   private def nonEmptyString(name: String, value: String): Validation[String] =
-    if (name.trim.nonEmpty) name.trim.validNel
+    if (value.trim.nonEmpty) value.trim.validNel
     else StringIsEmpty(s"$name: String is empty, required non empty string").invalidNel
 
   private def validateInt(name: String, value: String): Validation[Int] =
     nonEmptyString(name, value).andThen { validString =>
       Try(validString.toInt) match {
         case Failure(ex) =>
-          StringParsingFailed(s"$name: String is not valid Int, required valid int in string form. reason: ${ex.getClass.getName}, ${ex.getMessage}").invalidNel
+          StringParsingFailed(
+            s"$name: String is not valid Int, required valid int in string form. reason: ${ex.getClass.getName}, ${ex.getMessage}").invalidNel
         case Success(intValue) => intValue.validNel
       }
     }

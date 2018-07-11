@@ -1,6 +1,6 @@
-# Wordify (number to words converter)
+# Wordify (number to text converter)
 
-Converts number to British english words.
+Converts number to British english text (words).
 
 ### Instructions to compile, run source code and run tests
 
