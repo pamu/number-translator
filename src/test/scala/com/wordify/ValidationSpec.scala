@@ -1,8 +1,6 @@
 package com.wordify
 
 import cats.data.Validated.{Invalid, Valid}
-import com.wordify.exceptions.StringIsEmpty
-import com.wordify.services.StaticTranslationData
 import org.scalatest.{GivenWhenThen, MustMatchers, WordSpec}
 import com.wordify.validations._
 

@@ -17,14 +17,14 @@ object Main {
           case Valid(value) =>
 
             val service = new NumberTranslationServiceImpl()
+
             service.translate(value) match {
               case Failure(exception) =>
 
                 exception.printStackTrace()
                 System.err.println(s"error: ${exception.getMessage}")
 
-              case Success(result) =>
-                System.out.println(s"result: $result")
+              case Success(result) => System.out.println(s"result: $result")
             }
 
           case Invalid(e) =>
